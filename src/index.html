@@ -9,18 +9,18 @@
 </head>
 
 <body>
-  <main class="flex h-screen">
-    <aside class="flex flex-col w-65 h-full p-2 bg-neutral-900">
-      <header class="flex justify-between pb-8">
-        <div class="py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer">
-          <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M4 5H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
-            <path d="M4 8H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
-            <path d="M8 1V15" stroke="#B5B5B5" stroke-width="1.5" />
-            <rect x="1" y="1" width="16" height="14" rx="4" stroke="#B5B5B5" stroke-width="1.5" />
-          </svg>
-        </div>
-        <div class="py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer">
+  <div class="relative flex h-screen">
+    <div class="absolute left-2 top-2 py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" id="aside-toggle">
+      <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 5H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M4 8H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
+        <path d="M8 1V15" stroke="#B5B5B5" stroke-width="1.5" />
+        <rect x="1" y="1" width="16" height="14" rx="4" stroke="#B5B5B5" stroke-width="1.5" />
+      </svg>
+    </div>
+    <aside class="flex flex-col w-65 h-full p-2 bg-neutral-900" id="aside">
+      <header class="flex justify-end pb-8">
+        <div class="self-end py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M5.77001 1.57385H4.4613C2.80445 1.57385 1.4613 2.917 1.4613 4.57385V11.5C1.4613 13.1568 2.80445 14.5 4.4613 14.5H11.3874C13.0443 14.5 14.3874 13.1568 14.3874 11.5V10.1913"
@@ -68,7 +68,60 @@
         <p class="text-xs text-white leading-none ">Перейти на Pro-тариф</p>
       </footer>
     </aside>
-  </main>
+    <main class="flex flex-col w-full overflow-y-auto bg-(--chat-main-color)">
+      <div class="flex flex-1 flex-col w-2xl mx-auto p-5 overflow-y-scroll text-base text-white custom-scrollbar">
+        <article class="self-end max-w-[70%] px-4 py-3 rounded-3xl bg-(--chat-user-color)">Что такое Tailwind?</article>
+        <article class="mt-5 pb-9">
+          Tailwind CSS — это утилитарный CSS-фреймворк, который позволяет быстро создавать
+          адаптивный и
+          современный интерфейс, используя готовые CSS-классы прямо в HTML-разметке.
+          <br><br>
+          В отличие от традиционных фреймворков вроде Bootstrap, где есть готовые компоненты (кнопки, модальные окна и
+          т.п.), Tailwind делает упор на микро-классы, каждый из которых отвечает за одно конкретное CSS-свойство
+          (например, отступ, цвет, размер текста и т.д.).
+          <br><br>
+          Tailwind особенно популярен среди фронтенд-разработчиков, которые используют React, Vue, Next.js и другие
+          современные фреймворки.
+        </article>
+        <article class="self-end max-w-[70%] px-4 py-3 rounded-3xl bg-(--chat-user-color)">Какие популярные сайты
+          сделаны на tailwind?
+          Перечисли простым списком.</article>
+        <article class="mt-5 pb-9">
+          Вот список популярных сайтов и сервисов, использующих Tailwind CSS:
+          <ul class="list-disc pl-5">
+            <li>GitHub Copilot Docs</li>
+            <li>Vercel (и их дашборд)</li>
+            <li>Tailwind UI (официальная библиотека компонентов)</li>
+            <li>Laravel (оф. сайт фреймворка)</li>
+            <li>Statamic (CMS на Laravel)</li>
+            <li>Plausible Analytics</li>
+            <li>Linear (система управления задачами)</li>
+            <li>Tailscan (инспектор Tailwind-классов в браузере)</li>
+            <li>Transistor.fm (подкаст-хостинг)</li>
+            <li>Refactoring UI (сайт одноимённой книги от авторов Tailwind)</li>
+          </ul>
+          <br>
+          Эти сайты варьируются от документации и панелей управления до SaaS-продуктов и маркетинговых лендингов —
+          Tailwind гибко подходит под любой тип интерфейса.
+        </article>
+      </div>
+      <div class="w-2xl mx-auto pb-5">
+        <div class="flex items-end rounded-3xl p-2 pl-4 bg-(--chat-user-color)">
+          <span
+            class="peer relative w-full max-h-30 min-h-[27px] mr-1 pr-3 overflow-y-auto text-white focus:outline-none custom-scrollbar
+                      before:absolute before:hidden before:content-[attr(data-placeholder)] before:text-neutral-500 empty:before:block"
+            data-placeholder="Спросите что-нибудь..." id="write-to-chat" contenteditable="plaintext-only"></span>
+          <button class="rounded-full p-1 bg-white peer-empty:bg-neutral-700 hover:bg-white hover:cursor-pointer ">
+            <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9.5 5V14.5" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" />
+              <path d="M5.5 8.5L9.5 4.5L13.5 8.5" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>
 </body>
 
 </html>

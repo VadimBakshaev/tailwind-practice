@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+@theme {
+    --chat-main-color: #212121;
+    --chat-user-color: #2e2e2e;
+}
+
 @layer utilities {
     .custom-scrollbar {
         scrollbar-width: thin;
