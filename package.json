@@ -24,6 +24,7 @@
     "@tailwindcss/postcss": "^4.1.11",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
+    "lorem-ipsum": "^2.0.8",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
