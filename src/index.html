@@ -9,8 +9,29 @@
 </head>
 
 <body>
-  <div class="relative flex h-screen">
-    <div class="absolute left-2 top-2 py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" id="aside-toggle">
+  <div class="relative flex flex-col h-screen lg:flex-row">
+    <header class="flex justify-between pt-3 pb-4 px-2 bg-(--chat-main-color) lg:hidden">
+      <div class="py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" id="mobile-toggle">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M11.6663 12.6686L11.801 12.6823C12.1038 12.7445 12.3313 13.0125 12.3313 13.3337C12.3311 13.6547 12.1038 13.9229 11.801 13.985L11.6663 13.9987H3.33325C2.96609 13.9987 2.66839 13.7008 2.66821 13.3337C2.66821 12.9664 2.96598 12.6686 3.33325 12.6686H11.6663ZM16.6663 6.00162L16.801 6.01529C17.1038 6.07746 17.3313 6.34545 17.3313 6.66666C17.3313 6.98787 17.1038 7.25585 16.801 7.31802L16.6663 7.3317H3.33325C2.96598 7.3317 2.66821 7.03393 2.66821 6.66666C2.66821 6.29939 2.96598 6.00162 3.33325 6.00162H16.6663Z"
+            fill="white" />
+        </svg>
+      </div>
+      <div class="py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" data-new-chat>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M5.77001 1.57385H4.4613C2.80445 1.57385 1.4613 2.917 1.4613 4.57385V11.5C1.4613 13.1568 2.80445 14.5 4.4613 14.5H11.3874C13.0443 14.5 14.3874 13.1568 14.3874 11.5V10.1913"
+            stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
+          <path
+            d="M8.25945 10.5215C7.91304 10.8679 7.45154 11.0752 6.96248 11.1039L5.36971 11.1974C5.07089 11.215 4.82371 10.9678 4.84126 10.669L4.9348 9.07619C4.96352 8.58714 5.17073 8.12563 5.51714 7.77922L10.4252 2.87116C11.1825 2.11389 12.4102 2.11389 13.1675 2.87115V2.87115C13.9248 3.62842 13.9248 4.85619 13.1675 5.61346L8.25945 10.5215Z"
+            stroke="#B5B5B5" stroke-width="1.5" />
+        </svg>
+      </div>
+    </header>
+    <div
+      class="hidden absolute z-11 left-2 top-2 py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer lg:block"
+      id="aside-toggle">
       <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 5H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
         <path d="M4 8H5" stroke="#B5B5B5" stroke-width="1.5" stroke-linecap="round" />
@@ -18,9 +39,9 @@
         <rect x="1" y="1" width="16" height="14" rx="4" stroke="#B5B5B5" stroke-width="1.5" />
       </svg>
     </div>
-    <aside class="flex flex-col w-65 h-full p-2 bg-neutral-900" id="aside">
-      <header class="flex justify-end pb-8">
-        <div class="self-end py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" id="new-chat">
+    <aside class="hidden absolute z-10 flex-col w-65 h-full p-2 bg-neutral-900 lg:flex lg:relative" id="aside">
+      <header class="hidden justify-end pb-8 lg:flex">
+        <div class="self-end py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" data-new-chat>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               d="M5.77001 1.57385H4.4613C2.80445 1.57385 1.4613 2.917 1.4613 4.57385V11.5C1.4613 13.1568 2.80445 14.5 4.4613 14.5H11.3874C13.0443 14.5 14.3874 13.1568 14.3874 11.5V10.1913"
@@ -28,6 +49,15 @@
             <path
               d="M8.25945 10.5215C7.91304 10.8679 7.45154 11.0752 6.96248 11.1039L5.36971 11.1974C5.07089 11.215 4.82371 10.9678 4.84126 10.669L4.9348 9.07619C4.96352 8.58714 5.17073 8.12563 5.51714 7.77922L10.4252 2.87116C11.1825 2.11389 12.4102 2.11389 13.1675 2.87115V2.87115C13.9248 3.62842 13.9248 4.85619 13.1675 5.61346L8.25945 10.5215Z"
               stroke="#B5B5B5" stroke-width="1.5" />
+          </svg>
+        </div>
+      </header>
+      <header class="flex justify-end pb-8 lg:hidden">
+        <div class="self-end py-2 px-3 rounded-lg hover:bg-neutral-700 hover:cursor-pointer" id="close">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M12.2548 2.75489C12.5282 2.48153 12.9717 2.48153 13.2451 2.75489C13.5184 3.02826 13.5184 3.47176 13.2451 3.74513L8.9902 8.00001L13.2451 12.2549L13.3349 12.3652C13.514 12.6369 13.4841 13.006 13.2451 13.2451C13.006 13.4842 12.6368 13.5141 12.3652 13.335L12.2548 13.2451L7.99995 8.99021L3.74506 13.2451C3.4717 13.5185 3.0282 13.5185 2.75483 13.2451C2.48146 12.9718 2.48146 12.5282 2.75483 12.2549L7.00971 8.00001L2.75483 3.74513L2.66499 3.63478C2.48589 3.36311 2.51575 2.99397 2.75483 2.75489C2.99391 2.51582 3.36305 2.48595 3.63471 2.66505L3.74506 2.75489L7.99995 7.00978L12.2548 2.75489Z"
+              fill="#B5B5B5" />
           </svg>
         </div>
       </header>
@@ -68,9 +98,12 @@
         <p class="text-xs text-white leading-none ">Перейти на Pro-тариф</p>
       </footer>
     </aside>
-    <main class="flex flex-col w-full overflow-y-auto bg-(--chat-main-color)">
-      <div id="chat" class="flex flex-1 flex-col w-2xl mx-auto p-5 overflow-y-scroll text-base text-white custom-scrollbar">
-        <article class="self-end max-w-[70%] px-4 py-3 rounded-3xl bg-(--chat-user-color)">Что такое Tailwind?</article>
+    <div id="overlay" class="fixed inset-0 bg-black/50 z-9 hidden"></div>
+    <main class="flex grow flex-col w-full overflow-y-auto bg-(--chat-main-color)">
+      <div id="chat"
+        class="flex flex-1 flex-col w-auto mx-5 p-5 overflow-y-scroll text-base text-white custom-scrollbar md:w-2xl md:mx-auto">
+        <article class="self-end max-w-full px-4 py-3 rounded-3xl bg-(--chat-user-color) md:max-w-[70%]">Что такое
+          Tailwind?</article>
         <article class="mt-5 pb-9">
           Tailwind CSS — это утилитарный CSS-фреймворк, который позволяет быстро создавать
           адаптивный и
@@ -83,7 +116,8 @@
           Tailwind особенно популярен среди фронтенд-разработчиков, которые используют React, Vue, Next.js и другие
           современные фреймворки.
         </article>
-        <article class="self-end max-w-[70%] px-4 py-3 rounded-3xl bg-(--chat-user-color)">Какие популярные сайты
+        <article class="self-end max-w-full px-4 py-3 rounded-3xl bg-(--chat-user-color) md:max-w-[70%]">Какие
+          популярные сайты
           сделаны на tailwind?
           Перечисли простым списком.</article>
         <article class="mt-5 pb-9">
@@ -105,13 +139,14 @@
           Tailwind гибко подходит под любой тип интерфейса.
         </article>
       </div>
-      <div class="w-2xl mx-auto pb-5">
+      <div class="w-full mx-auto pb-5 px-5 md:w-2xl md:px-0">
         <div class="flex items-end rounded-3xl p-2 pl-4 bg-(--chat-user-color)">
           <span
             class="peer relative w-full max-h-30 min-h-[27px] mr-1 pr-3 overflow-y-auto text-white focus:outline-none custom-scrollbar
                       before:absolute before:hidden before:content-[attr(data-placeholder)] before:text-neutral-500 empty:before:block"
             data-placeholder="Спросите что-нибудь..." id="write-to-chat" contenteditable="plaintext-only"></span>
-          <button class="rounded-full p-1 bg-white peer-empty:bg-neutral-700 hover:bg-white hover:cursor-pointer " id="send-message">
+          <button class="rounded-full p-1 bg-white peer-empty:bg-neutral-700 hover:bg-white hover:cursor-pointer "
+            id="send-message">
             <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M9.5 5V14.5" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round" />
               <path d="M5.5 8.5L9.5 4.5L13.5 8.5" stroke="#2E2E2E" stroke-width="2" stroke-linecap="round"

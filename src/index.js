@@ -6,7 +6,7 @@ const chatEl = document.getElementById("chat");
 const linksEl = document.getElementById("chat-links");
 const buttonEl = document.getElementById("send-message");
 const messageEl = document.getElementById("write-to-chat");
-const newChatEl = document.getElementById("new-chat");
+const overlayEl = document.getElementById("overlay");
 let activeChat = null;
 
 const lorem = new LoremIpsum({});
@@ -21,26 +21,22 @@ messageEl.addEventListener("keydown", (e) => {
   }
 });
 
+document
+  .getElementById("mobile-toggle")
+  .addEventListener("click", toggleSidebar);
+
 document.getElementById("aside-toggle").addEventListener("click", () => {
-  asideEl.classList.toggle("hidden");
+  asideEl.classList.toggle("sidebar-closed");
 });
 
-newChatEl.addEventListener("click", () => {
-  const id = chats.length + 1;
-  chatEl.innerHTML = "";
-  chats.unshift({
-    id: id,
-    name: "Новый чат " + id,
-    history: [],
-  });
-  activeChat = id;
-  chatLinks();
-  setActive();
-  renderChat();
+document.querySelectorAll("[data-new-chat]").forEach((element) => {
+  element.addEventListener("click", newChat);
 });
+
+document.getElementById("close").addEventListener("click", toggleSidebar);
 
 buttonEl.addEventListener("click", () => {
-  if (activeChat === null) newChatEl.click();
+  if (activeChat === null) newChat();
   const text = messageEl.innerText.trim();
   if (!text) return;
   const chat = chats.find((chat) => chat.id === activeChat);
@@ -148,6 +144,32 @@ const chats = [
   },
 ];
 
+function toggleSidebar() {
+  if (asideEl.classList.contains("hidden")) {
+    asideEl.classList.remove("hidden");
+    asideEl.classList.add("flex");
+    overlayEl.classList.toggle("hidden");
+  } else {
+    asideEl.classList.remove("flex");
+    asideEl.classList.add("hidden");
+    overlayEl.classList.toggle("hidden");
+  }
+}
+
+function newChat() {
+  const id = chats.length + 1;
+  chatEl.innerHTML = "";
+  chats.unshift({
+    id: id,
+    name: "Новый чат " + id,
+    history: [],
+  });
+  activeChat = id;
+  chatLinks();
+  setActive();
+  renderChat();
+}
+
 function renderChat(chatId) {
   chatEl.innerHTML = "";
   const chat = chats.find((chat) => chat.id === chatId);
@@ -169,7 +191,7 @@ function addMessage(text, from = "user", typingEffect = false) {
   const wrapper = document.createElement("article");
   wrapper.className =
     from === "user"
-      ? "self-end max-w-[70%] px-4 py-3 rounded-3xl bg-(--chat-user-color)"
+      ? "self-end max-w-full px-4 py-3 rounded-3xl bg-(--chat-user-color) md:max-w-[70%]"
       : "mt-5 pb-9";
   if (typingEffect) {
     typeText(wrapper, text);
